@@ -1,4 +1,5 @@
 import os
+import requests
 import streamlit as st
 import streamlit.components.v1 as components
 
@@ -18,6 +19,83 @@ def credentials():
     return str(user), str(pwd)
 
 APP_USERNAME, APP_PASSWORD = credentials()
+
+def whatsapp_credentials():
+    """Reads Meta WhatsApp Cloud API credentials from env vars or Streamlit Secrets.
+    Set these in .streamlit/secrets.toml (locally) or in your Streamlit Cloud app's
+    Settings -> Secrets (in production). Never hardcode them in this file.
+    """
+    token = os.getenv("WHATSAPP_TOKEN", "")
+    phone_id = os.getenv("WHATSAPP_PHONE_NUMBER_ID", "")
+    try:
+        token = token or st.secrets.get("WHATSAPP_TOKEN", "")
+        phone_id = phone_id or st.secrets.get("WHATSAPP_PHONE_NUMBER_ID", "")
+        wa_cfg = st.secrets.get("whatsapp", {})
+        token = token or wa_cfg.get("token", "")
+        phone_id = phone_id or wa_cfg.get("phone_number_id", "")
+    except Exception:
+        pass
+    return str(token), str(phone_id)
+
+WHATSAPP_TOKEN, WHATSAPP_PHONE_NUMBER_ID = whatsapp_credentials()
+GRAPH_API_VERSION = "v20.0"
+
+def _graph_url():
+    return f"https://graph.facebook.com/{GRAPH_API_VERSION}/{WHATSAPP_PHONE_NUMBER_ID}/messages"
+
+def send_whatsapp_text(to, body):
+    """Send a free-form text message. Only works within the 24h customer
+    service window (i.e. the recipient messaged your number in the last 24h).
+    `to` must be in international format with no + or leading zeros, e.g. 919845011223.
+    """
+    if not WHATSAPP_TOKEN or not WHATSAPP_PHONE_NUMBER_ID:
+        return False, "WhatsApp Cloud API is not configured. Add WHATSAPP_TOKEN and WHATSAPP_PHONE_NUMBER_ID to Streamlit Secrets."
+    payload = {
+        "messaging_product": "whatsapp",
+        "to": to,
+        "type": "text",
+        "text": {"body": body},
+    }
+    headers = {"Authorization": f"Bearer {WHATSAPP_TOKEN}", "Content-Type": "application/json"}
+    try:
+        r = requests.post(_graph_url(), headers=headers, json=payload, timeout=15)
+        if r.status_code == 200:
+            return True, r.json()
+        return False, r.json()
+    except Exception as e:
+        return False, str(e)
+
+def send_whatsapp_template(to, template_name, lang_code="en_US", body_params=None):
+    """Send a pre-approved template message. Required for the first message to a
+    user, or any time outside the 24h session window. `template_name` must match
+    a template already approved in Meta Business Manager.
+    """
+    if not WHATSAPP_TOKEN or not WHATSAPP_PHONE_NUMBER_ID:
+        return False, "WhatsApp Cloud API is not configured. Add WHATSAPP_TOKEN and WHATSAPP_PHONE_NUMBER_ID to Streamlit Secrets."
+    components_payload = []
+    if body_params:
+        components_payload.append({
+            "type": "body",
+            "parameters": [{"type": "text", "text": p} for p in body_params],
+        })
+    payload = {
+        "messaging_product": "whatsapp",
+        "to": to,
+        "type": "template",
+        "template": {
+            "name": template_name,
+            "language": {"code": lang_code},
+            "components": components_payload,
+        },
+    }
+    headers = {"Authorization": f"Bearer {WHATSAPP_TOKEN}", "Content-Type": "application/json"}
+    try:
+        r = requests.post(_graph_url(), headers=headers, json=payload, timeout=15)
+        if r.status_code == 200:
+            return True, r.json()
+        return False, r.json()
+    except Exception as e:
+        return False, str(e)
 
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
@@ -178,6 +256,46 @@ def app():
         if st.button("Sign out", use_container_width=True):
             st.session_state.authenticated = False
             st.rerun()
+
+    with st.expander("📲  Send a real WhatsApp message (Meta Cloud API)", expanded=False):
+        if not WHATSAPP_TOKEN or not WHATSAPP_PHONE_NUMBER_ID:
+            st.warning(
+                "WhatsApp Cloud API isn't connected yet. Add **WHATSAPP_TOKEN** and "
+                "**WHATSAPP_PHONE_NUMBER_ID** to your Streamlit Secrets to enable real sending. "
+                "The dashboard below stays fully usable as a demo in the meantime."
+            )
+        else:
+            st.success("WhatsApp Cloud API is connected.")
+
+        msg_type = st.radio("Message type", ["Text (24h session only)", "Template (first contact / anytime)"], horizontal=True)
+        to_number = st.text_input("Recipient (international format, no + or leading 0)", placeholder="919845011223")
+
+        if msg_type.startswith("Text"):
+            body = st.text_area("Message", placeholder="Hello! This is a message from DV Analytics.")
+            if st.button("Send text message", type="primary"):
+                if not to_number or not body:
+                    st.error("Enter both a recipient number and a message.")
+                else:
+                    ok, result = send_whatsapp_text(to_number, body)
+                    if ok:
+                        st.success(f"Sent! Message ID: {result.get('messages', [{}])[0].get('id', 'unknown')}")
+                    else:
+                        st.error(f"Failed to send: {result}")
+        else:
+            template_name = st.text_input("Template name (must be approved in Meta Business Manager)", placeholder="hello_world")
+            lang_code = st.text_input("Language code", value="en_US")
+            params_raw = st.text_input("Body variables, comma-separated (optional)", placeholder="Ananya, ₹18500, 30 Aug 2026")
+            if st.button("Send template message", type="primary"):
+                if not to_number or not template_name:
+                    st.error("Enter both a recipient number and a template name.")
+                else:
+                    params = [p.strip() for p in params_raw.split(",") if p.strip()] if params_raw else None
+                    ok, result = send_whatsapp_template(to_number, template_name, lang_code, params)
+                    if ok:
+                        st.success(f"Sent! Message ID: {result.get('messages', [{}])[0].get('id', 'unknown')}")
+                    else:
+                        st.error(f"Failed to send: {result}")
+
     dashboard_path = os.path.join(os.path.dirname(__file__), "index.html")
     with open(dashboard_path, "r", encoding="utf-8") as f:
         dashboard_html = f.read()
