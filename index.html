@@ -217,6 +217,85 @@ input:focus, textarea:focus, select:focus{border-color:var(--royal); box-shadow:
 }
 :focus-visible{outline:2px solid var(--royal); outline-offset:2px;}
 @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+
+/* ============================================================
+   DARK THEME RESKIN — "WhatsBulk" look
+   ============================================================ */
+body{
+  background:
+    radial-gradient(circle at 15% 0%, rgba(124,108,246,.10), transparent 40%),
+    radial-gradient(circle at 90% 15%, rgba(79,125,251,.10), transparent 35%),
+    #0A0F1E;
+  color:#E7ECF5;
+}
+.topbar{background:#0F1526; border-bottom-color:rgba(255,255,255,.07);}
+.icon-btn{background:#141B2E; border-color:rgba(255,255,255,.09); color:#8A96AC;}
+.icon-btn:hover{background:#1B2338; color:#fff;}
+.search-box{background:#141B2E; border-color:rgba(255,255,255,.09); color:#8A96AC;}
+.search-box input{color:#E7ECF5;}
+.search-box input::placeholder{color:#5C6980;}
+.pill{background:rgba(34,197,94,.12); color:#4ADE80; border-color:rgba(34,197,94,.28);}
+.page-head p{color:#8A96AC;}
+.card, .stat-card, .chart-card, .tpl-card{background:#141B2E; border-color:rgba(255,255,255,.08); box-shadow:0 8px 24px rgba(0,0,0,.25);}
+.tpl-card:hover{border-color:var(--emerald); box-shadow:0 14px 32px rgba(0,0,0,.35);}
+.stat-label{color:#8A96AC;}
+.section-sub{color:#8A96AC;}
+th{color:#6B7690; border-bottom-color:rgba(255,255,255,.08);}
+td{border-bottom-color:rgba(255,255,255,.06);}
+tbody tr:hover{background:rgba(255,255,255,.03);}
+.badge-green{background:rgba(34,197,94,.14); color:#4ADE80;}
+.badge-amber{background:rgba(245,158,11,.14); color:#FBBF24;}
+.badge-red{background:rgba(239,68,68,.14); color:#F87171;}
+.badge-blue{background:rgba(79,125,251,.16); color:#8FB2FF;}
+.badge-gray{background:rgba(255,255,255,.08); color:#AEB8CC;}
+.name-sub{color:#8A96AC;}
+.toolbar input[type=text], select{background:#0F1526; border-color:rgba(255,255,255,.10); color:#E7ECF5;}
+.chip{background:#0F1526; border-color:rgba(255,255,255,.10); color:#8A96AC;}
+.chip.active{background:linear-gradient(135deg,#7C6CF6,#4F7DFB); color:#fff; border-color:transparent;}
+.tab{color:#8A96AC;}
+.tab.active{color:#fff;}
+.tabs{border-bottom-color:rgba(255,255,255,.08);}
+label{color:#C3CBDC;}
+input[type=text], input[type=number], input[type=date], input[type=time], textarea{background:#0F1526; border-color:rgba(255,255,255,.10); color:#E7ECF5;}
+.var-tag{background:rgba(79,125,251,.14); color:#8FB2FF; border-color:rgba(79,125,251,.25);}
+.radio-opt{border-color:rgba(255,255,255,.10); color:#8A96AC;}
+.radio-opt.sel{border-color:var(--emerald); background:rgba(34,197,94,.12); color:#4ADE80;}
+.tpl-preview{color:#8A96AC;}
+.lang-dot{background:#0F1526; border-color:rgba(255,255,255,.10); color:#8A96AC;}
+.dropzone{background:#0F1526; border-color:rgba(255,255,255,.12);}
+.dropzone.drag{border-color:var(--emerald); background:rgba(34,197,94,.08);}
+.btn-primary{background:linear-gradient(135deg,#7C6CF6,#4F7DFB);}
+.btn-primary:hover{filter:brightness(1.08);}
+.btn-outline{background:#0F1526; color:#E7ECF5; border-color:rgba(255,255,255,.12);}
+.btn-outline:hover{background:#1B2338;}
+.btn-ghost{color:#8A96AC;}
+.btn-ghost:hover{background:#1B2338; color:#fff;}
+.progress-track{background:rgba(255,255,255,.08);}
+.modal{background:#141B2E; box-shadow:0 20px 60px rgba(0,0,0,.5);}
+.modal p{color:#8A96AC;}
+.modal-overlay{background:rgba(3,6,14,.65);}
+.toast{background:#1B2338; box-shadow:0 20px 60px rgba(0,0,0,.5);}
+::-webkit-scrollbar-thumb{background:#232B42;}
+
+/* Dashboard hero + widgets matching WhatsBulk design */
+.hero-greet{font-size:26px; font-weight:800; font-family:'Sora',sans-serif; display:flex; align-items:center; gap:8px;}
+.quick-msg-card textarea{min-height:64px;}
+.quick-actions-row{display:flex; gap:10px; margin-top:14px; flex-wrap:wrap;}
+.reminder-item{display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.06);}
+.reminder-item:last-child{border-bottom:none;}
+.reminder-dot{width:32px; height:32px; border-radius:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.reminder-item b{font-size:12.5px; display:block;}
+.reminder-item span{font-size:11px; color:#8A96AC;}
+.followup-card{background:linear-gradient(135deg,#3A2F8F,#2456C7); border:none; padding:18px 20px; border-radius:14px;}
+.followup-card h4{font-size:14px; margin-bottom:4px;}
+.followup-card p{font-size:12px; color:rgba(255,255,255,.78); margin-bottom:14px;}
+.followup-card button{background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.3); color:#fff;}
+.upgrade-pro{margin:10px 14px 16px; padding:16px; border-radius:12px; background:linear-gradient(135deg,#3A2F8F,#2456C7); color:#fff;}
+.upgrade-pro b{font-size:12.5px; display:block; margin-bottom:2px;}
+.upgrade-pro span{font-size:10.5px; color:rgba(255,255,255,.75); display:block; margin-bottom:10px;}
+.upgrade-pro button{width:100%; background:#fff; color:#2456C7; border:none; border-radius:8px; padding:8px; font-size:12px; font-weight:700;}
+.sidebar-tagline{padding:0 18px 14px; font-size:10.5px; color:#5E7095; line-height:1.5;}
+.sidebar-tagline b{color:#8FB2FF;}
 </style>
 </head>
 <body>
@@ -226,7 +305,7 @@ input:focus, textarea:focus, select:focus{border-color:var(--royal); box-shadow:
   <aside class="sidebar" id="sidebar">
     <div class="brand">
       <div class="brand-mark">DV</div>
-      <div class="brand-text"><b>DV Analytics</b><span>Campaign Studio</span></div>
+      <div class="brand-text"><b>DV Analytics</b><span>Send Smarter, Grow Faster</span></div>
     </div>
     <nav class="nav">
       <div class="nav-section-title">Overview</div>
@@ -266,10 +345,16 @@ input:focus, textarea:focus, select:focus{border-color:var(--royal); box-shadow:
         <span class="nav-label">Admin Panel</span>
       </a>
     </nav>
+    <div class="upgrade-pro">
+      <b>⭐ Upgrade to Pro</b>
+      <span>Unlock advanced reports, higher limits & more growth tools.</span>
+      <button onclick="toast('Pro plans coming soon')">Get Pro</button>
+    </div>
     <div class="sidebar-foot">
       <div class="avatar-sm">MS</div>
       <div class="sidebar-foot-text"><b>Md Sajid</b><span>DV Analytics · BLR</span></div>
     </div>
+    <div class="sidebar-tagline">More than messaging.<br><b>A brighter you.</b></div>
   </aside>
 
   <!-- MAIN -->
@@ -296,7 +381,7 @@ input:focus, textarea:focus, select:focus{border-color:var(--royal); box-shadow:
       <!-- ============ DASHBOARD ============ -->
       <section class="view active" id="view-dashboard">
         <div class="page-head">
-          <div><h1>Good morning, Sajid 👋</h1><p>Here's how your WhatsApp communication is performing today.</p></div>
+          <div><h1 class="hero-greet">Good morning, Sajid 👋</h1><p>Here's how your WhatsApp communication is performing today.</p></div>
           <button class="btn btn-accent" onclick="go('campaigns')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
             New Campaign
@@ -305,29 +390,54 @@ input:focus, textarea:focus, select:focus{border-color:var(--royal); box-shadow:
 
         <div class="stat-grid" id="statGrid"></div>
 
-        <div class="grid-2" style="margin-bottom:16px;">
+        <div class="grid-2" style="margin-bottom:16px; grid-template-columns:1.6fr 1fr; align-items:start;">
           <div class="chart-card">
-            <div class="section-title">Messaging trend</div>
+            <div class="section-title">Message Activity</div>
             <div class="section-sub">Delivered vs. read, last 14 days</div>
             <canvas id="trendChart" height="130"></canvas>
           </div>
-          <div class="chart-card">
-            <div class="section-title">Message status</div>
-            <div class="section-sub">Today's split</div>
-            <canvas id="statusDonut" height="150"></canvas>
+
+          <div class="card card-pad quick-msg-card">
+            <div class="section-title">Quick Message</div>
+            <div class="section-sub">Use a template or type your message</div>
+            <textarea id="quickMsgText" placeholder="Type your message here... (you can use {Name} for personalization)"></textarea>
+            <div class="quick-actions-row">
+              <button class="btn btn-outline btn-sm" onclick="go('templates')">Use template</button>
+              <button class="btn btn-primary btn-sm" style="margin-left:auto;" onclick="toast('Quick message queued')">Send Now</button>
+            </div>
           </div>
         </div>
 
-        <div class="grid-2">
-          <div class="card card-pad">
-            <div class="section-title">Active &amp; scheduled campaigns</div>
-            <div class="section-sub">Live status across your running sends</div>
-            <table id="activeCampaignsTable"><thead><tr><th>Campaign</th><th>Audience</th><th>Status</th><th>Progress</th></tr></thead><tbody></tbody></table>
+        <div class="grid-2" style="grid-template-columns:1.6fr 1fr; align-items:start;">
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div class="card card-pad">
+              <div class="section-title">Recent Campaigns</div>
+              <div class="section-sub">Live status across your running &amp; recent sends</div>
+              <table id="activeCampaignsTable"><thead><tr><th>Campaign</th><th>Audience</th><th>Status</th><th>Progress</th></tr></thead><tbody></tbody></table>
+            </div>
+            <div class="card card-pad">
+              <div class="section-title">Payment reminder stats</div>
+              <div class="section-sub">Fee follow-up performance this month</div>
+              <div id="paymentStats"></div>
+            </div>
           </div>
-          <div class="card card-pad">
-            <div class="section-title">Payment reminder stats</div>
-            <div class="section-sub">Fee follow-up performance this month</div>
-            <div id="paymentStats"></div>
+
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div class="card card-pad">
+              <div class="section-title">Upcoming Reminders</div>
+              <div class="section-sub">Don't miss what's next</div>
+              <div id="upcomingReminders"></div>
+            </div>
+            <div class="followup-card">
+              <h4>Never Miss a Follow-Up!</h4>
+              <p>Set reminders and let WhatsBulk handle it for you.</p>
+              <button class="btn btn-sm" onclick="go('scheduler')">Create Reminder</button>
+            </div>
+            <div class="chart-card">
+              <div class="section-title">Message status</div>
+              <div class="section-sub">Today's split</div>
+              <canvas id="statusDonut" height="150"></canvas>
+            </div>
           </div>
         </div>
       </section>
@@ -507,12 +617,23 @@ DV Analytics Team<div class="wa-meta">10:02 <svg width="13" height="13" viewBox=
       <!-- ============ ANALYTICS ============ -->
       <section class="view" id="view-analytics">
         <div class="page-head">
-          <div><h1>Campaign Analytics</h1><p>Delivery performance and counselor-level breakdown.</p></div>
+          <div><h1>Campaign Analytics &amp; Reports</h1><p>Delivery performance, campaign leaderboard, and counselor-level breakdown.</p></div>
+          <div style="display:flex; gap:10px;">
+            <select id="reportRange" style="height:38px;"><option>Last 7 days</option><option selected>Last 30 days</option><option>This quarter</option></select>
+            <button class="btn btn-outline" onclick="toast('Report exported as PDF (demo)')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
+              Export Report
+            </button>
+          </div>
         </div>
         <div class="stat-grid" id="analyticsStatGrid" style="grid-template-columns:repeat(5,1fr);"></div>
         <div class="grid-2" style="margin-bottom:16px;">
           <div class="chart-card"><div class="section-title">Weekly delivery trend</div><div class="section-sub">Delivered / Read / Failed</div><canvas id="weeklyBar" height="140"></canvas></div>
           <div class="chart-card"><div class="section-title">Conversion funnel</div><div class="section-sub">Sent → Delivered → Read → Replied</div><canvas id="funnelChart" height="140"></canvas></div>
+        </div>
+        <div class="grid-2" style="margin-bottom:16px; grid-template-columns:1fr 1fr;">
+          <div class="chart-card"><div class="section-title">Top campaigns by read rate</div><div class="section-sub">Best performing sends this period</div><canvas id="leaderboardChart" height="150"></canvas></div>
+          <div class="chart-card"><div class="section-title">Language mix</div><div class="section-sub">Messages sent by language</div><canvas id="languageChart" height="150"></canvas></div>
         </div>
         <div class="card card-pad">
           <div class="section-title">Counselor performance</div>
@@ -708,16 +829,23 @@ function toast(msg){
 }
 
 /* ---------------- Dashboard ---------------- */
+const upcomingReminders = [
+  {icon:'👋', bg:'rgba(34,197,94,.16)', title:'Follow up with new leads', when:'Today, 10:00 AM'},
+  {icon:'💳', bg:'rgba(79,125,251,.16)', title:'Payment reminder', when:'Today, 2:30 PM'},
+  {icon:'🎉', bg:'rgba(124,108,246,.18)', title:'Send festival offers', when:'Tomorrow, 9:00 AM'},
+  {icon:'🔔', bg:'rgba(245,158,11,.16)', title:'Check subscription renewal', when:'Sep 12, 11:00 AM'},
+];
+
 function renderDashboard(){
   const stats = [
-    {label:"Total Students", value: students.length.toLocaleString(), delta:"+12 this week", up:true, icon:iconUsers, bg:"#EFF6FF", color:"#2563EB"},
-    {label:"Messages Sent Today", value:"486", delta:"+8.4% vs yesterday", up:true, icon:iconSend, bg:"#ECFDF5", color:"#10B981"},
-    {label:"Delivery Rate", value:"96.2%", delta:"+0.6%", up:true, icon:iconCheck, bg:"#ECFDF5", color:"#10B981"},
-    {label:"Read Rate", value:"78.4%", delta:"-1.1%", up:false, icon:iconEye, bg:"#FFFBEB", color:"#F59E0B"},
-    {label:"Failed Messages", value:"9", delta:"-3 vs yesterday", up:true, icon:iconAlert, bg:"#FEF2F2", color:"#EF4444"},
-    {label:"Active Campaigns", value:"3", delta:"1 sending now", up:true, icon:iconBolt, bg:"#EFF6FF", color:"#2563EB"},
-    {label:"Scheduled Campaigns", value:"4", delta:"Next in 18 hrs", up:true, icon:iconClock, bg:"#F1F5F9", color:"#475569"},
-    {label:"Payment Reminders Sent", value:"1,204", delta:"₹8.6L recovered", up:true, icon:iconRupee, bg:"#ECFDF5", color:"#10B981"},
+    {label:"Total Students", value: students.length.toLocaleString(), delta:"+12 this week", up:true, icon:iconUsers, bg:"rgba(79,125,251,.14)", color:"#8FB2FF"},
+    {label:"Messages Sent Today", value:"486", delta:"+8.4% vs yesterday", up:true, icon:iconSend, bg:"rgba(34,197,94,.14)", color:"#4ADE80"},
+    {label:"Delivery Rate", value:"96.2%", delta:"+0.6%", up:true, icon:iconCheck, bg:"rgba(34,197,94,.14)", color:"#4ADE80"},
+    {label:"Read Rate", value:"78.4%", delta:"-1.1%", up:false, icon:iconEye, bg:"rgba(245,158,11,.14)", color:"#FBBF24"},
+    {label:"Failed Messages", value:"9", delta:"-3 vs yesterday", up:true, icon:iconAlert, bg:"rgba(239,68,68,.14)", color:"#F87171"},
+    {label:"Active Campaigns", value:"3", delta:"1 sending now", up:true, icon:iconBolt, bg:"rgba(79,125,251,.14)", color:"#8FB2FF"},
+    {label:"Scheduled Campaigns", value:"4", delta:"Next in 18 hrs", up:true, icon:iconClock, bg:"rgba(255,255,255,.08)", color:"#C3CBDC"},
+    {label:"Payment Reminders Sent", value:"1,204", delta:"₹8.6L recovered", up:true, icon:iconRupee, bg:"rgba(34,197,94,.14)", color:"#4ADE80"},
   ];
   document.getElementById('statGrid').innerHTML = stats.map(s=>`
     <div class="stat-card">
@@ -734,27 +862,36 @@ function renderDashboard(){
 
   document.getElementById('paymentStats').innerHTML = `
     <div style="display:flex; flex-direction:column; gap:14px; margin-top:6px;">
-      ${row('Reminders sent', '1,204', '#2563EB')}
-      ${row('Confirmed payments after reminder', '312', '#10B981')}
-      ${row('Amount recovered (est.)', '₹8,60,400', '#10B981')}
-      ${row('Still overdue', '96 students', '#EF4444')}
+      ${row('Reminders sent', '1,204', '#8FB2FF')}
+      ${row('Confirmed payments after reminder', '312', '#4ADE80')}
+      ${row('Amount recovered (est.)', '₹8,60,400', '#4ADE80')}
+      ${row('Still overdue', '96 students', '#F87171')}
     </div>`;
-  function row(l,v,c){ return `<div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:12px; border-bottom:1px solid #F1F5F9;"><span style="font-size:12.5px; color:var(--muted);">${l}</span><span class="mono" style="font-weight:600; color:${c};">${v}</span></div>`; }
+  function row(l,v,c){ return `<div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,.06);"><span style="font-size:12.5px; color:#8A96AC;">${l}</span><span class="mono" style="font-weight:600; color:${c};">${v}</span></div>`; }
+
+  document.getElementById('upcomingReminders').innerHTML = upcomingReminders.map(r=>`
+    <div class="reminder-item">
+      <div class="reminder-dot" style="background:${r.bg};">${r.icon}</div>
+      <div><b>${r.title}</b><span>${r.when}</span></div>
+    </div>`).join('');
+
+  Chart.defaults.color = '#8A96AC';
+  Chart.defaults.borderColor = 'rgba(255,255,255,.07)';
 
   new Chart(document.getElementById('trendChart'), {
     type:'line',
     data:{ labels:Array.from({length:14},(_,i)=>`D${i+1}`),
       datasets:[
-        {label:'Delivered', data:[210,240,260,255,280,300,290,310,330,320,340,360,350,370], borderColor:'#2563EB', backgroundColor:'rgba(37,99,235,.08)', fill:true, tension:.35, pointRadius:0, borderWidth:2},
-        {label:'Read', data:[150,175,190,185,205,220,215,230,245,238,252,268,260,278], borderColor:'#10B981', backgroundColor:'rgba(16,185,129,.08)', fill:true, tension:.35, pointRadius:0, borderWidth:2},
+        {label:'Delivered', data:[210,240,260,255,280,300,290,310,330,320,340,360,350,370], borderColor:'#4F7DFB', backgroundColor:'rgba(79,125,251,.12)', fill:true, tension:.35, pointRadius:0, borderWidth:2},
+        {label:'Read', data:[150,175,190,185,205,220,215,230,245,238,252,268,260,278], borderColor:'#22C55E', backgroundColor:'rgba(34,197,94,.10)', fill:true, tension:.35, pointRadius:0, borderWidth:2},
       ]},
-    options:{plugins:{legend:{position:'bottom', labels:{boxWidth:8, usePointStyle:true, font:{size:11}}}}, scales:{y:{grid:{color:'#F1F5F9'}}, x:{grid:{display:false}}}, maintainAspectRatio:false}
+    options:{plugins:{legend:{position:'bottom', labels:{boxWidth:8, usePointStyle:true, font:{size:11}, color:'#8A96AC'}}}, scales:{y:{grid:{color:'rgba(255,255,255,.06)'}, ticks:{color:'#6B7690'}}, x:{grid:{display:false}, ticks:{color:'#6B7690'}}}, maintainAspectRatio:false}
   });
 
   new Chart(document.getElementById('statusDonut'), {
     type:'doughnut',
-    data:{ labels:['Delivered','Read','Failed','Pending'], datasets:[{data:[298,241,9,42], backgroundColor:['#2563EB','#10B981','#EF4444','#E2E8F0'], borderWidth:0}] },
-    options:{plugins:{legend:{position:'bottom', labels:{boxWidth:8, usePointStyle:true, font:{size:11}}}}, cutout:'68%', maintainAspectRatio:false}
+    data:{ labels:['Delivered','Read','Failed','Pending'], datasets:[{data:[298,241,9,42], backgroundColor:['#4F7DFB','#22C55E','#EF4444','#374254'], borderWidth:0}] },
+    options:{plugins:{legend:{position:'bottom', labels:{boxWidth:8, usePointStyle:true, font:{size:11}, color:'#8A96AC'}}}, cutout:'68%', maintainAspectRatio:false}
   });
 }
 
@@ -950,7 +1087,7 @@ function renderScheduler(){
     {label:'Automated follow-up rules', value:'6', icon:iconBolt},
   ];
   document.getElementById('schedulerGrid').innerHTML = cards.map(c=>`
-    <div class="stat-card"><div class="icon-wrap" style="background:#EFF6FF; color:#2563EB;">${c.icon}</div>
+    <div class="stat-card"><div class="icon-wrap" style="background:rgba(79,125,251,.14); color:#8FB2FF;">${c.icon}</div>
     <div class="stat-label">${c.label}</div><div class="stat-value">${c.value}</div></div>`).join('');
   document.getElementById('schedQueueBody').innerHTML = scheduledQueue.map(q=>`
     <tr><td><b>${q.name}</b></td><td>${q.trigger}</td><td>${q.audience}</td><td>${q.next}</td><td>${q.repeats}</td></tr>`).join('');
@@ -959,11 +1096,11 @@ function renderScheduler(){
 /* ---------------- Analytics ---------------- */
 function renderAnalytics(){
   const stats = [
-    {label:'Delivered', value:'96.2%', color:'#2563EB'},
-    {label:'Read', value:'78.4%', color:'#10B981'},
-    {label:'Replied', value:'22.1%', color:'#F59E0B'},
-    {label:'Click Rate', value:'11.6%', color:'#7C3AED'},
-    {label:'Conversion', value:'8.9%', color:'#EF4444'},
+    {label:'Delivered', value:'96.2%', color:'#4F7DFB'},
+    {label:'Read', value:'78.4%', color:'#22C55E'},
+    {label:'Replied', value:'22.1%', color:'#FBBF24'},
+    {label:'Click Rate', value:'11.6%', color:'#A78BFA'},
+    {label:'Conversion', value:'8.9%', color:'#F87171'},
   ];
   document.getElementById('analyticsStatGrid').innerHTML = stats.map(s=>`
     <div class="stat-card"><div class="stat-label">${s.label}</div><div class="stat-value" style="color:${s.color};">${s.value}</div></div>`).join('');
@@ -972,17 +1109,31 @@ function renderAnalytics(){
     type:'bar',
     data:{ labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
       datasets:[
-        {label:'Delivered', data:[210,240,198,260,300,180,150], backgroundColor:'#2563EB', borderRadius:5},
-        {label:'Read', data:[160,190,150,205,240,140,110], backgroundColor:'#10B981', borderRadius:5},
+        {label:'Delivered', data:[210,240,198,260,300,180,150], backgroundColor:'#4F7DFB', borderRadius:5},
+        {label:'Read', data:[160,190,150,205,240,140,110], backgroundColor:'#22C55E', borderRadius:5},
         {label:'Failed', data:[8,6,10,5,4,3,2], backgroundColor:'#EF4444', borderRadius:5},
       ]},
-    options:{plugins:{legend:{position:'bottom', labels:{boxWidth:8, usePointStyle:true, font:{size:11}}}}, scales:{x:{grid:{display:false}}, y:{grid:{color:'#F1F5F9'}}}, maintainAspectRatio:false}
+    options:{plugins:{legend:{position:'bottom', labels:{boxWidth:8, usePointStyle:true, font:{size:11}, color:'#8A96AC'}}}, scales:{x:{grid:{display:false}, ticks:{color:'#6B7690'}}, y:{grid:{color:'rgba(255,255,255,.06)'}, ticks:{color:'#6B7690'}}}, maintainAspectRatio:false}
   });
 
   new Chart(document.getElementById('funnelChart'), {
     type:'bar',
-    data:{ labels:['Sent','Delivered','Read','Replied'], datasets:[{data:[1000,962,754,221], backgroundColor:['#0F172A','#2563EB','#10B981','#F59E0B'], borderRadius:5}] },
-    options:{indexAxis:'y', plugins:{legend:{display:false}}, scales:{x:{grid:{color:'#F1F5F9'}}, y:{grid:{display:false}}}, maintainAspectRatio:false}
+    data:{ labels:['Sent','Delivered','Read','Replied'], datasets:[{data:[1000,962,754,221], backgroundColor:['#7C6CF6','#4F7DFB','#22C55E','#FBBF24'], borderRadius:5}] },
+    options:{indexAxis:'y', plugins:{legend:{display:false}}, scales:{x:{grid:{color:'rgba(255,255,255,.06)'}, ticks:{color:'#6B7690'}}, y:{grid:{display:false}, ticks:{color:'#8A96AC'}}}, maintainAspectRatio:false}
+  });
+
+  new Chart(document.getElementById('leaderboardChart'), {
+    type:'bar',
+    data:{ labels:['Certificate Ready – DS 12','July EMI Reminder','AI Batch 3 – Webinar','Admission Follow-Up','BBSR Placement Update'],
+      datasets:[{label:'Read rate %', data:[85,77,75,66,70], backgroundColor:'#22C55E', borderRadius:5}] },
+    options:{indexAxis:'y', plugins:{legend:{display:false}}, scales:{x:{grid:{color:'rgba(255,255,255,.06)'}, ticks:{color:'#6B7690'}, max:100}, y:{grid:{display:false}, ticks:{color:'#8A96AC', font:{size:10.5}}}}, maintainAspectRatio:false}
+  });
+
+  new Chart(document.getElementById('languageChart'), {
+    type:'doughnut',
+    data:{ labels:['English','Hindi','Kannada','Telugu','Tamil','Other'],
+      datasets:[{data:[46,22,12,8,7,5], backgroundColor:['#4F7DFB','#22C55E','#FBBF24','#A78BFA','#F87171','#374254'], borderWidth:0}] },
+    options:{plugins:{legend:{position:'bottom', labels:{boxWidth:8, usePointStyle:true, font:{size:10.5}, color:'#8A96AC'}}}, cutout:'62%', maintainAspectRatio:false}
   });
 
   const counselors = [
@@ -1021,7 +1172,7 @@ function renderAdmin(){
     <td><span class="badge ${u.status==='Active'?'badge-green':'badge-amber'}">${u.status}</span></td>
     <td><button class="btn btn-ghost btn-sm">Manage</button></td></tr>`).join('');
   document.getElementById('activityLog').innerHTML = activity.map(a=>`
-    <div style="display:flex; gap:12px; padding:10px 0; border-bottom:1px solid #F1F5F9; font-size:12.5px;">
+    <div style="display:flex; gap:12px; padding:10px 0; border-bottom:1px solid rgba(255,255,255,.06); font-size:12.5px;">
       <div class="avatar-sm" style="width:26px;height:26px;font-size:10px; background:linear-gradient(135deg,#10B981,#2563EB);">${initials(a.who)}</div>
       <div><b>${a.who}</b> <span style="color:var(--muted);">${a.what}</span> ${a.target}<div style="color:var(--muted-2); font-size:11px; margin-top:2px;">${a.when}</div></div>
     </div>`).join('');
