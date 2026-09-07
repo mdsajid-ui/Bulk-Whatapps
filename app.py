@@ -123,6 +123,9 @@ st.markdown("""
  50%{ transform:translate(30px,-25px) scale(1.08); }
 }
 #MainMenu,footer{visibility:hidden}
+header[data-testid="stHeader"]{background:transparent!important; height:2.2rem!important;}
+div[data-testid="stAppViewContainer"]>.main{padding-top:0!important;}
+div[data-testid="stDecoration"]{display:none!important;}
 .block-container{padding:14px 18px 0!important; max-width:100% !important}
 .login-wrap{max-width:650px;margin:0 auto;padding:35px 18px 60px}
 .brand{text-align:center;margin:18px 0 27px; position:relative; z-index:1;}
