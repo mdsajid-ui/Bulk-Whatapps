@@ -31,20 +31,35 @@ st.markdown("""
  background:radial-gradient(circle at 50% 12%,rgba(0,210,255,.18),transparent 28%),
  radial-gradient(circle at 10% 85%,rgba(25,100,255,.14),transparent 30%),
  linear-gradient(145deg,#061421,#092a40 52%,#03111e);
- color:#fff
+ color:#fff;
+ position:relative; overflow-x:hidden;
+}
+.stApp:before, .stApp:after{
+ content:''; position:fixed; border-radius:50%; filter:blur(60px); z-index:0; pointer-events:none;
+ animation:blobfloat 14s ease-in-out infinite;
+}
+.stApp:before{ width:340px; height:340px; background:rgba(30,180,255,.20); top:-80px; left:-100px; }
+.stApp:after{ width:280px; height:280px; background:rgba(70,90,255,.16); bottom:-60px; right:-80px; animation-delay:-7s; }
+@keyframes blobfloat{
+ 0%,100%{ transform:translate(0,0) scale(1); }
+ 50%{ transform:translate(30px,-25px) scale(1.08); }
 }
 #MainMenu,footer{visibility:hidden}
 .block-container{padding:14px 18px 0!important; max-width:100% !important}
 .login-wrap{max-width:650px;margin:0 auto;padding:35px 18px 60px}
-.brand{text-align:center;margin:18px 0 27px}
+.brand{text-align:center;margin:18px 0 27px; position:relative; z-index:1;}
 .logo{
- width:76px;height:76px;margin:auto;border-radius:25px;
- background:radial-gradient(circle at 30% 30%,#8df8ff 0 7%,transparent 8%),
- radial-gradient(circle at 65% 62%,#168cff 0 22%,transparent 23%),
- radial-gradient(circle at 45% 47%,#00c9ff 0 31%,transparent 32%),
- linear-gradient(145deg,#54f1ff,#087dff 55%,#2735c7);
- box-shadow:0 0 28px rgba(40,225,255,.5),0 0 70px rgba(0,120,255,.25);
- transform:rotate(-7deg)
+ width:78px;height:78px;margin:auto;border-radius:50% 50% 50% 60%/55% 55% 45% 45%;
+ background:radial-gradient(circle at 32% 28%,#a6f8ff 0 9%,transparent 10%),
+ radial-gradient(circle at 68% 65%,#168cff 0 26%,transparent 27%),
+ radial-gradient(circle at 45% 47%,#00c9ff 0 34%,transparent 35%),
+ linear-gradient(145deg,#6df3ff,#0aa2ff 55%,#2946e0);
+ box-shadow:0 0 32px rgba(40,225,255,.55),0 0 80px rgba(0,120,255,.28);
+ animation:blobmorph 6s ease-in-out infinite;
+}
+@keyframes blobmorph{
+ 0%,100%{ border-radius:50% 50% 50% 60%/55% 55% 45% 45%; transform:rotate(-6deg); }
+ 50%{ border-radius:60% 45% 55% 50%/50% 60% 45% 55%; transform:rotate(4deg); }
 }
 .brand h2{font-size:31px;margin:16px 0 5px;font-weight:800;letter-spacing:-1px}
 .brand h2 span{color:#43eaff}
@@ -52,9 +67,10 @@ st.markdown("""
 .card{
  padding:34px 38px 30px;border-radius:28px;
  border:1px solid rgba(125,220,255,.28);
- background:linear-gradient(145deg,rgba(40,75,94,.48),rgba(5,25,40,.78));
+ background:linear-gradient(145deg,rgba(40,75,94,.42),rgba(5,25,40,.72));
  box-shadow:0 35px 90px rgba(0,0,0,.45),0 0 45px rgba(0,190,255,.08);
- backdrop-filter:blur(24px)
+ backdrop-filter:blur(28px);
+ position:relative; z-index:1;
 }
 .welcome{text-align:center}
 .welcome h1{font-size:27px;margin:0;font-weight:750}
@@ -93,6 +109,8 @@ div.stButton>button:hover{transform:translateY(-2px)}
 .bottom{text-align:center;color:#708b99;font-size:11px;margin-top:20px;line-height:1.6}
 .bottom b{color:#43ddff}
 .error{background:rgba(255,65,100,.08);border:1px solid rgba(255,90,120,.3);color:#ffb0be;border-radius:12px;padding:10px;font-size:12px;margin:12px 0}
+.forgot-link{font-size:12px;color:#43ddff;text-align:right;margin-top:-2px}
+.remember-row{display:flex;align-items:center;justify-content:space-between;margin-top:-8px}
 @media(max-width:600px){.card{padding:28px 20px}.brand h2{font-size:27px}}
 </style>
 """, unsafe_allow_html=True)
@@ -121,7 +139,11 @@ def login():
                              label_visibility="collapsed")
     password = st.text_input("Password", placeholder="Password", type="password",
                              label_visibility="collapsed")
-    st.checkbox("Remember me")
+    rc1, rc2 = st.columns([1, 1])
+    with rc1:
+        st.checkbox("Remember me")
+    with rc2:
+        st.markdown('<div class="forgot-link">Forgot password?</div>', unsafe_allow_html=True)
 
     if st.button("Sign in", type="primary", use_container_width=True):
         if not APP_USERNAME or not APP_PASSWORD:
