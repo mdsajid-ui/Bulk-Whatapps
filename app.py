@@ -1,7 +1,8 @@
 import os
 import streamlit as st
+import streamlit.components.v1 as components
 
-st.set_page_config(page_title="DV Analytics • Sign in", page_icon="🔷", layout="centered")
+st.set_page_config(page_title="DV Analytics • Campaign Studio", page_icon="🔷", layout="wide")
 
 def credentials():
     user = os.getenv("APP_USERNAME", "")
@@ -32,8 +33,9 @@ st.markdown("""
  linear-gradient(145deg,#061421,#092a40 52%,#03111e);
  color:#fff
 }
-.block-container{max-width:650px!important;padding:35px 18px 60px!important}
 #MainMenu,footer{visibility:hidden}
+.block-container{padding:14px 18px 0!important; max-width:100% !important}
+.login-wrap{max-width:650px;margin:0 auto;padding:35px 18px 60px}
 .brand{text-align:center;margin:18px 0 27px}
 .logo{
  width:76px;height:76px;margin:auto;border-radius:25px;
@@ -105,6 +107,7 @@ def brand():
     """, unsafe_allow_html=True)
 
 def login():
+    st.markdown('<div class="login-wrap">', unsafe_allow_html=True)
     brand()
     st.markdown("""
     <div class="card">
@@ -144,20 +147,19 @@ def login():
       <div class="bottom">New here? <b>Create account</b><br><br>
       🔒 Never store passwords directly in your GitHub source code.</div>
     </div>
+    </div>
     """, unsafe_allow_html=True)
 
 def app():
-    brand()
-    st.markdown("""
-    <div class="card">
-      <h1 style="margin:0;color:white">DV Analytics Dashboard</h1>
-      <p style="color:#91a8b8">Login successful. Put your existing application code here.</p>
-    </div>
-    """, unsafe_allow_html=True)
-    st.write("")
-    if st.button("Sign out"):
-        st.session_state.authenticated=False
-        st.rerun()
+    top = st.columns([6, 1])
+    with top[1]:
+        if st.button("Sign out", use_container_width=True):
+            st.session_state.authenticated = False
+            st.rerun()
+    dashboard_path = os.path.join(os.path.dirname(__file__), "index.html")
+    with open(dashboard_path, "r", encoding="utf-8") as f:
+        dashboard_html = f.read()
+    components.html(dashboard_html, height=1400, scrolling=True)
 
 if st.session_state.authenticated:
     app()
