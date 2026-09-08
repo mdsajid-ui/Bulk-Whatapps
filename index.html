@@ -18,6 +18,7 @@
   --shadow-sm:0 1px 2px rgba(15,23,42,.04), 0 1px 1px rgba(15,23,42,.03);
   --shadow-md:0 4px 16px rgba(15,23,42,.06), 0 2px 6px rgba(15,23,42,.04);
   --shadow-lg:0 12px 36px rgba(15,23,42,.10), 0 4px 12px rgba(15,23,42,.05);
+  --accent1:#7C6CF6; --accent2:#4F7DFB;
 }
 *{box-sizing:border-box; margin:0; padding:0;}
 body{font-family:'Inter',sans-serif; background:var(--cloud); color:var(--ink); font-size:14px; -webkit-font-smoothing:antialiased;}
@@ -251,7 +252,7 @@ tbody tr:hover{background:rgba(255,255,255,.03);}
 .name-sub{color:#8A96AC;}
 .toolbar input[type=text], select{background:#0F1526; border-color:rgba(255,255,255,.10); color:#E7ECF5;}
 .chip{background:#0F1526; border-color:rgba(255,255,255,.10); color:#8A96AC;}
-.chip.active{background:linear-gradient(135deg,#7C6CF6,#4F7DFB); color:#fff; border-color:transparent;}
+.chip.active{background:linear-gradient(135deg,var(--accent1),var(--accent2)); color:#fff; border-color:transparent;}
 .tab{color:#8A96AC;}
 .tab.active{color:#fff;}
 .tabs{border-bottom-color:rgba(255,255,255,.08);}
@@ -264,7 +265,7 @@ input[type=text], input[type=number], input[type=date], input[type=time], textar
 .lang-dot{background:#0F1526; border-color:rgba(255,255,255,.10); color:#8A96AC;}
 .dropzone{background:#0F1526; border-color:rgba(255,255,255,.12);}
 .dropzone.drag{border-color:var(--emerald); background:rgba(34,197,94,.08);}
-.btn-primary{background:linear-gradient(135deg,#7C6CF6,#4F7DFB);}
+.btn-primary{background:linear-gradient(135deg,var(--accent1),var(--accent2));}
 .btn-primary:hover{filter:brightness(1.08);}
 .btn-outline{background:#0F1526; color:#E7ECF5; border-color:rgba(255,255,255,.12);}
 .btn-outline:hover{background:#1B2338;}
@@ -286,16 +287,18 @@ input[type=text], input[type=number], input[type=date], input[type=time], textar
 .reminder-dot{width:32px; height:32px; border-radius:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
 .reminder-item b{font-size:12.5px; display:block;}
 .reminder-item span{font-size:11px; color:#8A96AC;}
-.followup-card{background:linear-gradient(135deg,#3A2F8F,#2456C7); border:none; padding:18px 20px; border-radius:14px;}
+.followup-card{background:linear-gradient(135deg,var(--accent1),var(--accent2)); border:none; padding:18px 20px; border-radius:14px;}
 .followup-card h4{font-size:14px; margin-bottom:4px;}
 .followup-card p{font-size:12px; color:rgba(255,255,255,.78); margin-bottom:14px;}
 .followup-card button{background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.3); color:#fff;}
-.upgrade-pro{margin:10px 14px 16px; padding:16px; border-radius:12px; background:linear-gradient(135deg,#3A2F8F,#2456C7); color:#fff;}
+.upgrade-pro{margin:10px 14px 16px; padding:16px; border-radius:12px; background:linear-gradient(135deg,var(--accent1),var(--accent2)); color:#fff;}
 .upgrade-pro b{font-size:12.5px; display:block; margin-bottom:2px;}
 .upgrade-pro span{font-size:10.5px; color:rgba(255,255,255,.75); display:block; margin-bottom:10px;}
 .upgrade-pro button{width:100%; background:#fff; color:#2456C7; border:none; border-radius:8px; padding:8px; font-size:12px; font-weight:700;}
 .sidebar-tagline{padding:0 18px 14px; font-size:10.5px; color:#5E7095; line-height:1.5;}
 .sidebar-tagline b{color:#8FB2FF;}
+.theme-picker{background:#0F1526; border:1px solid rgba(255,255,255,.10); color:#C3CBDC; border-radius:9px; height:36px; padding:0 10px; font-size:12.5px; font-family:inherit;}
+.theme-picker:focus{outline:none; border-color:var(--accent2);}
 </style>
 </head>
 <body>
@@ -368,6 +371,18 @@ input[type=text], input[type=number], input[type=date], input[type=time], textar
         <input type="text" placeholder="Search students, campaigns, templates…">
       </div>
       <div class="topbar-right">
+        <select id="themePicker" class="theme-picker" title="Colour theme" onchange="applyTheme(this.value)">
+          <option value="whatsbulk">🟣 WhatsBulk (default)</option>
+          <option value="apple">🍎 Apple Clean</option>
+          <option value="stripe">💳 Stripe Fintech</option>
+          <option value="netflix">🎬 Netflix Cinematic</option>
+          <option value="aiworkspace">🤖 AI Workspace</option>
+          <option value="tesla">⚡ Tesla Luxury</option>
+          <option value="healthcare">🏥 Healthcare Trust</option>
+          <option value="realestate">🏛️ Real Estate Gold</option>
+          <option value="dveducation">🎓 DV Education</option>
+          <option value="awwwards">✨ Awwwards Premium</option>
+        </select>
         <div class="pill"><span class="pill-dot"></span>WhatsApp API Connected</div>
         <button class="icon-btn" title="Notifications">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg>
@@ -809,6 +824,26 @@ function go(view, el){
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
+const THEMES = {
+  whatsbulk:   {a1:'#7C6CF6', a2:'#4F7DFB', label:'WhatsBulk'},
+  apple:       {a1:'#0A84FF', a2:'#34C759', label:'Apple Clean'},
+  stripe:      {a1:'#635BFF', a2:'#00D4FF', label:'Stripe Fintech'},
+  netflix:     {a1:'#E50914', a2:'#B81D24', label:'Netflix Cinematic'},
+  aiworkspace: {a1:'#10A37F', a2:'#6EE7B7', label:'AI Workspace'},
+  tesla:       {a1:'#E82127', a2:'#8B0000', label:'Tesla Luxury'},
+  healthcare:  {a1:'#0EA5E9', a2:'#14B8A6', label:'Healthcare Trust'},
+  realestate:  {a1:'#D4AF37', a2:'#8B6914', label:'Real Estate Gold'},
+  dveducation: {a1:'#FF7A00', a2:'#2563EB', label:'DV Education'},
+  awwwards:    {a1:'#EC4899', a2:'#8B5CF6', label:'Awwwards Premium'},
+};
+function applyTheme(key){
+  const t = THEMES[key] || THEMES.whatsbulk;
+  document.documentElement.style.setProperty('--accent1', t.a1);
+  document.documentElement.style.setProperty('--accent2', t.a2);
+  try{ window.parent.postMessage({type:'wa_theme', theme:key}, '*'); }catch(e){}
+  toast(`Theme set to ${t.label}`);
+}
+
 function switchCampaignTab(tab, el){
   document.querySelectorAll('.tabs .tab').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
@@ -835,6 +870,17 @@ const upcomingReminders = [
   {icon:'🎉', bg:'rgba(124,108,246,.18)', title:'Send festival offers', when:'Tomorrow, 9:00 AM'},
   {icon:'🔔', bg:'rgba(245,158,11,.16)', title:'Check subscription renewal', when:'Sep 12, 11:00 AM'},
 ];
+
+function safeChart(id, config){
+  if (typeof Chart === 'undefined'){
+    const el = document.getElementById(id);
+    if (el && el.parentNode){
+      el.parentNode.innerHTML = '<div style="padding:24px; text-align:center; color:#8A96AC; font-size:12.5px;">Chart library failed to load — check your network/CDN access.</div>';
+    }
+    return null;
+  }
+  return new Chart(document.getElementById(id), config);
+}
 
 function renderDashboard(){
   const stats = [
@@ -878,7 +924,7 @@ function renderDashboard(){
   Chart.defaults.color = '#8A96AC';
   Chart.defaults.borderColor = 'rgba(255,255,255,.07)';
 
-  new Chart(document.getElementById('trendChart'), {
+  safeChart('trendChart', {
     type:'line',
     data:{ labels:Array.from({length:14},(_,i)=>`D${i+1}`),
       datasets:[
@@ -888,7 +934,7 @@ function renderDashboard(){
     options:{plugins:{legend:{position:'bottom', labels:{boxWidth:8, usePointStyle:true, font:{size:11}, color:'#8A96AC'}}}, scales:{y:{grid:{color:'rgba(255,255,255,.06)'}, ticks:{color:'#6B7690'}}, x:{grid:{display:false}, ticks:{color:'#6B7690'}}}, maintainAspectRatio:false}
   });
 
-  new Chart(document.getElementById('statusDonut'), {
+  safeChart('statusDonut', {
     type:'doughnut',
     data:{ labels:['Delivered','Read','Failed','Pending'], datasets:[{data:[298,241,9,42], backgroundColor:['#4F7DFB','#22C55E','#EF4444','#374254'], borderWidth:0}] },
     options:{plugins:{legend:{position:'bottom', labels:{boxWidth:8, usePointStyle:true, font:{size:11}, color:'#8A96AC'}}}, cutout:'68%', maintainAspectRatio:false}
@@ -1105,7 +1151,7 @@ function renderAnalytics(){
   document.getElementById('analyticsStatGrid').innerHTML = stats.map(s=>`
     <div class="stat-card"><div class="stat-label">${s.label}</div><div class="stat-value" style="color:${s.color};">${s.value}</div></div>`).join('');
 
-  new Chart(document.getElementById('weeklyBar'), {
+  safeChart('weeklyBar', {
     type:'bar',
     data:{ labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
       datasets:[
@@ -1116,20 +1162,20 @@ function renderAnalytics(){
     options:{plugins:{legend:{position:'bottom', labels:{boxWidth:8, usePointStyle:true, font:{size:11}, color:'#8A96AC'}}}, scales:{x:{grid:{display:false}, ticks:{color:'#6B7690'}}, y:{grid:{color:'rgba(255,255,255,.06)'}, ticks:{color:'#6B7690'}}}, maintainAspectRatio:false}
   });
 
-  new Chart(document.getElementById('funnelChart'), {
+  safeChart('funnelChart', {
     type:'bar',
     data:{ labels:['Sent','Delivered','Read','Replied'], datasets:[{data:[1000,962,754,221], backgroundColor:['#7C6CF6','#4F7DFB','#22C55E','#FBBF24'], borderRadius:5}] },
     options:{indexAxis:'y', plugins:{legend:{display:false}}, scales:{x:{grid:{color:'rgba(255,255,255,.06)'}, ticks:{color:'#6B7690'}}, y:{grid:{display:false}, ticks:{color:'#8A96AC'}}}, maintainAspectRatio:false}
   });
 
-  new Chart(document.getElementById('leaderboardChart'), {
+  safeChart('leaderboardChart', {
     type:'bar',
     data:{ labels:['Certificate Ready – DS 12','July EMI Reminder','AI Batch 3 – Webinar','Admission Follow-Up','BBSR Placement Update'],
       datasets:[{label:'Read rate %', data:[85,77,75,66,70], backgroundColor:'#22C55E', borderRadius:5}] },
     options:{indexAxis:'y', plugins:{legend:{display:false}}, scales:{x:{grid:{color:'rgba(255,255,255,.06)'}, ticks:{color:'#6B7690'}, max:100}, y:{grid:{display:false}, ticks:{color:'#8A96AC', font:{size:10.5}}}}, maintainAspectRatio:false}
   });
 
-  new Chart(document.getElementById('languageChart'), {
+  safeChart('languageChart', {
     type:'doughnut',
     data:{ labels:['English','Hindi','Kannada','Telugu','Tamil','Other'],
       datasets:[{data:[46,22,12,8,7,5], backgroundColor:['#4F7DFB','#22C55E','#FBBF24','#A78BFA','#F87171','#374254'], borderWidth:0}] },
