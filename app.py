@@ -172,7 +172,24 @@ div[data-testid="stCheckbox"] label{color:#91a6b4!important;font-size:12px!impor
 div.stButton>button{
  border-radius:10px!important;min-height:38px!important;
  font-weight:600!important;font-size:13.5px!important;
+ background:#141B2E!important; color:#E7ECF5!important;
+ border:1px solid rgba(255,255,255,.14)!important;
 }
+div.stButton>button:hover{background:#1B2338!important; border-color:rgba(255,255,255,.22)!important;}
+div.stButton>button[kind="primary"]{
+ background:linear-gradient(100deg,#19dfff,#098dff 55%,#2760ff)!important;
+ color:#fff!important; border:none!important;
+}
+div.stButton>button[kind="primary"]:hover{filter:brightness(1.08);}
+div[data-testid="stExpander"]{
+ background:#141B2E!important; border:1px solid rgba(255,255,255,.10)!important;
+ border-radius:14px!important; margin-bottom:16px!important; overflow:hidden;
+}
+div[data-testid="stExpander"] summary{
+ color:#E7ECF5!important; font-weight:600!important; padding:14px 18px!important;
+}
+div[data-testid="stExpander"] summary:hover{background:rgba(255,255,255,.04)!important;}
+div[data-testid="stExpander"] svg{color:#8A96AC!important;}
 .login-wrap div.stButton>button{
  width:100%;min-height:52px;border-radius:16px!important;
  border:1px solid rgba(130,235,255,.35)!important;
