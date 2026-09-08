@@ -126,8 +126,6 @@ st.markdown("""
 header[data-testid="stHeader"]{background:transparent!important; height:2.2rem!important;}
 div[data-testid="stAppViewContainer"]>.main{padding-top:0!important;}
 div[data-testid="stDecoration"]{display:none!important;}
-.block-container{padding:14px 18px 0!important; max-width:100% !important}
-.login-wrap{max-width:650px;margin:0 auto;padding:35px 18px 60px}
 .brand{text-align:center;margin:18px 0 27px; position:relative; z-index:1;}
 .logo{
  width:78px;height:78px;margin:auto;border-radius:50% 50% 50% 60%/55% 55% 45% 45%;
@@ -206,7 +204,12 @@ def brand():
     """, unsafe_allow_html=True)
 
 def login():
-    st.markdown('<div class="login-wrap">', unsafe_allow_html=True)
+    st.markdown("""
+    <style>
+    .block-container{max-width:650px!important; margin:0 auto!important; padding:35px 18px 60px!important;}
+    </style>
+    <div class="login-wrap">
+    """, unsafe_allow_html=True)
     brand()
     st.markdown("""
     <div class="card">
@@ -254,6 +257,11 @@ def login():
     """, unsafe_allow_html=True)
 
 def app():
+    st.markdown("""
+    <style>
+    .block-container{max-width:100%!important; padding:14px 18px 0!important;}
+    </style>
+    """, unsafe_allow_html=True)
     top = st.columns([6, 1])
     with top[1]:
         if st.button("Sign out", use_container_width=True):
