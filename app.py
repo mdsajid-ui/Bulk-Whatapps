@@ -123,8 +123,7 @@ st.markdown("""
  50%{ transform:translate(30px,-25px) scale(1.08); }
 }
 #MainMenu,footer{visibility:hidden}
-header[data-testid="stHeader"]{background:transparent!important; height:2.2rem!important;}
-div[data-testid="stAppViewContainer"]>.main{padding-top:0!important;}
+header[data-testid="stHeader"]{background:transparent!important; box-shadow:none!important;}
 div[data-testid="stDecoration"]{display:none!important;}
 .brand{text-align:center;margin:18px 0 27px; position:relative; z-index:1;}
 .logo{
@@ -263,7 +262,7 @@ def login():
 def app():
     st.markdown("""
     <style>
-    .block-container{max-width:100%!important; padding:6px 18px 0!important;}
+    .block-container{max-width:100%!important; padding:2.5rem 18px 0!important;}
     </style>
     """, unsafe_allow_html=True)
     top = st.columns([10, 1])
