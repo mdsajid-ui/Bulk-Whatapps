@@ -171,13 +171,17 @@ div[data-testid="stTextInput"] input{
 div[data-testid="stTextInput"] input::placeholder{color:#7f98a8!important}
 div[data-testid="stCheckbox"] label{color:#91a6b4!important;font-size:12px!important}
 div.stButton>button{
+ border-radius:10px!important;min-height:38px!important;
+ font-weight:600!important;font-size:13.5px!important;
+}
+.login-wrap div.stButton>button{
  width:100%;min-height:52px;border-radius:16px!important;
  border:1px solid rgba(130,235,255,.35)!important;
  background:linear-gradient(100deg,#19dfff,#098dff 55%,#2760ff)!important;
  color:white!important;font-weight:750!important;font-size:15px!important;
  box-shadow:0 10px 28px rgba(0,153,255,.24)!important;transition:.2s!important
 }
-div.stButton>button:hover{transform:translateY(-2px)}
+.login-wrap div.stButton>button:hover{transform:translateY(-2px)}
 .oauth div.stButton>button{
  background:rgba(255,255,255,.06)!important;
  border:1px solid rgba(173,217,235,.16)!important;
@@ -259,10 +263,10 @@ def login():
 def app():
     st.markdown("""
     <style>
-    .block-container{max-width:100%!important; padding:14px 18px 0!important;}
+    .block-container{max-width:100%!important; padding:6px 18px 0!important;}
     </style>
     """, unsafe_allow_html=True)
-    top = st.columns([6, 1])
+    top = st.columns([10, 1])
     with top[1]:
         if st.button("Sign out", use_container_width=True):
             st.session_state.authenticated = False
